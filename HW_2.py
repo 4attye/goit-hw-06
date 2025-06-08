@@ -46,8 +46,8 @@ if __name__ == "__main__":
     bfs_result = bfs_path(metro_map, start_station, end_station)
 
     print(f"DFS шлях від {start_station} до {end_station}:")
-    print(" → ".join(dfs_result))
+    print("\n→ ".join(dfs_result))
     print(f"\nBFS шлях від {start_station} до {end_station}:")
-    print(" → ".join(bfs_result))
+    print(" \n→ ".join(bfs_result))
     print(f"Кількість станцій у шляху DFS: {len(dfs_result)}")
     print(f"Кількість станцій у шляху BFS: {len(bfs_result)}")
