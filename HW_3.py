@@ -44,11 +44,11 @@ def dijkstra(graph, start, end=None):
 if __name__ == "__main__":
 
     G = metro_map()
-    start_station = "Академмістечко"
+    start_station = "Червоний хутір"
     end_station = "Оболонь"
 
     distances, _ = dijkstra(G, start_station)
-    print(f"Відстані від станції {start_station}")
+    print(f"Відстані від станції {start_station} до всіх інших станцій:")
     for vertex, dist in distances.items():
         print(f"{vertex}: {dist}")
 
