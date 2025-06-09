@@ -1,4 +1,4 @@
-from HW_1 import metro_map
+from HW_1 import create_metro_graph
 
 
 def dijkstra(graph, start, end=None):
@@ -43,7 +43,7 @@ def dijkstra(graph, start, end=None):
 
 if __name__ == "__main__":
 
-    G = metro_map()
+    G = create_metro_graph()
     start_station = "Червоний хутір"
     end_station = "Оболонь"
 

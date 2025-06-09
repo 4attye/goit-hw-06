@@ -1,7 +1,7 @@
-from HW_1 import metro_map
+from HW_1 import create_metro_graph
 from collections import deque
 
-metro_map = metro_map()
+metro_graph = create_metro_graph()
 
 def dfs_path(graph, start, goal, path=None, visited=None):
     if path is None:
@@ -42,8 +42,8 @@ if __name__ == "__main__":
     start_station = "Академмістечко"
     end_station = "Теремки"
 
-    dfs_result = dfs_path(metro_map, start_station, end_station)
-    bfs_result = bfs_path(metro_map, start_station, end_station)
+    dfs_result = dfs_path(metro_graph, start_station, end_station)
+    bfs_result = bfs_path(metro_graph, start_station, end_station)
 
     print(f"DFS шлях від {start_station} до {end_station}:")
     print("\n→ ".join(dfs_result))
