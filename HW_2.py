@@ -21,6 +21,16 @@ def dfs_path(graph, start, goal, path=None, visited=None):
     return None
 
 
+def dfs_recursive(graph, vertex, visited=None):
+    if visited is None:
+        visited = set()
+    visited.add(vertex)
+    print("→"+vertex, end='\n')  # Відвідуємо вершину
+    for neighbor in graph[vertex]:
+        if neighbor not in visited:
+            dfs_recursive(graph, neighbor, visited)
+
+
 def bfs_path(graph, start, goal):
     visited = set()
     queue = deque([[start]])
@@ -38,6 +48,28 @@ def bfs_path(graph, start, goal):
                 queue.append(new_path)
     return None
 
+
+def bfs_recursive(graph, queue, visited=None):
+    
+    if visited is None:
+        visited = set()
+    
+    if not queue:
+        return
+    
+    vertex = queue.popleft()
+    
+    if vertex not in visited:
+      
+        print("→"+vertex, end="\n")
+        
+        visited.add(vertex)
+        
+        queue.extend(set(graph[vertex]) - visited)
+    
+    bfs_recursive(graph, queue, visited)
+
+
 if __name__ == "__main__":
     start_station = "Академмістечко"
     end_station = "Теремки"
@@ -51,3 +83,8 @@ if __name__ == "__main__":
     print(" \n→ ".join(bfs_result))
     print(f"Кількість станцій у шляху DFS: {len(dfs_result)}")
     print(f"Кількість станцій у шляху BFS: {len(bfs_result)}")
+
+    # dfs_recursive(metro_graph, start_station)
+    # print("\n")
+    # bfs_queue = deque([start_station])
+    # bfs_recursive(metro_graph, bfs_queue)
