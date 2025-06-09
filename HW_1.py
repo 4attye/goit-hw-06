@@ -1,5 +1,7 @@
 import networkx as nx
 import matplotlib.pyplot as plt
+from pos import pos
+
 
 G = nx.Graph()
 
@@ -57,7 +59,7 @@ edges = [
     ("Вирлиця", "Бориспільська", 3),
     ("Бориспільська", "Червоний хутір", 2)]
 
-pos = {}
+# pos = {}
 
 red_line = ["Академмістечко", "Житомирська", "Святошин", "Нивки", "Берестейська",
             "Шулявська", "Політехнічний інститут", "Вокзальна", "Університет",
@@ -75,18 +77,14 @@ green_line = ["Сирець", "Дорогожичі", "Лук'янівська",
               "Видубичі", "Славутич", "Осокорки", "Позняки", "Харьківська",
               "Вирлиця", "Бориспільська", "Червоний хутір"]
 
-for i, station in enumerate(red_line):
-    pos[station] = (i, -len(blue_line)/1.3+i/2)
-
-for i, station in enumerate(blue_line):
-    pos[station] = (len(red_line)/2, -i+5.5-i)
-
-for i, station in enumerate(green_line):
-    pos[station] = (len(red_line)/3+i, -len(red_line)/3+(-i))
 
 def metro_map():
     G.clear()
-    G.add_nodes_from(red_line + blue_line + green_line)
+    # G.add_nodes_from(red_line + blue_line + green_line)
+    for line, color in [(red_line, "lightcoral"), (blue_line, "lightblue"), (green_line, "lightgreen")]:
+        for n in line:
+            G.add_node(n, color=color)
+
     for u, v, w in edges:
         G.add_edge(u, v, weight=w)
     return G
@@ -94,7 +92,7 @@ def metro_map():
 if __name__ == "__main__":
 
     metro_map = metro_map()
-
+    node_colors = [metro_map.nodes[node].get("color", "gray") for node in metro_map.nodes]
     print(f"Кількість станцій (вершин): {metro_map.number_of_nodes()}")
     print(f"Кількість з'єднань (ребер): {metro_map.number_of_edges()}")
 
@@ -103,6 +101,7 @@ if __name__ == "__main__":
         print(f"{node}: {degree}")
 
     plt.figure(figsize=(16, 9))
-    nx.draw(metro_map, pos, with_labels=True, node_size=500, node_color='lightblue', font_size=10
-            , font_color='black', font_weight='bold', edge_color='gray', width=2)
+    nx.draw(metro_map, pos, with_labels=True, node_color=node_colors, node_size=400, font_size=10
+            , font_color='black', font_weight='bold', edge_color='lightgray', width=4)
+    plt.title("Київське метро")
     plt.show()
