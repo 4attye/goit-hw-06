@@ -59,7 +59,6 @@ edges = [
     ("Вирлиця", "Бориспільська", 3),
     ("Бориспільська", "Червоний хутір", 2)]
 
-# pos = {}
 
 red_line = ["Академмістечко", "Житомирська", "Святошин", "Нивки", "Берестейська",
             "Шулявська", "Політехнічний інститут", "Вокзальна", "Університет",
@@ -80,7 +79,7 @@ green_line = ["Сирець", "Дорогожичі", "Лук'янівська",
 
 def metro_map():
     G.clear()
-    # G.add_nodes_from(red_line + blue_line + green_line)
+
     for line, color in [(red_line, "lightcoral"), (blue_line, "lightblue"), (green_line, "lightgreen")]:
         for n in line:
             G.add_node(n, color=color)
