@@ -31,7 +31,7 @@ if __name__ == "__main__":
         print(f"{node}: {degree}")
 
     plt.figure(figsize=(16, 9))
-    nx.draw(metro_graph, pos, with_labels=True, node_color=node_colors,edge_color=edge_colors, node_size=400, font_size=10
+    nx.draw(metro_graph, pos, with_labels=True, node_color=node_colors, edge_color=edge_colors, node_size=400, font_size=10
             , font_color='black', font_weight='bold', width=4)
     plt.title("Київське метро")
     plt.show()
